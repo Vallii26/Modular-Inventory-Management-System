@@ -1,0 +1,7 @@
+{
+  "Settings": {
+    "MongoDB:ConnectionString": "<insert connection string>",
+    "MongoDB:DatabaseName": "<insert database name>",
+    "SQLite:ConnectionString":"Data Source=testDB.db"
+  }
+}
