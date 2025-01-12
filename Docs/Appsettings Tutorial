@@ -1,0 +1,41 @@
+Instructions for creating the appsettings.json file:
+  1. Go to folder view in Visual Studio - Database Branch
+  2. Open the .getignore file and add the following line to the very bottom:
+      **/appsettings.json
+  3. Create a new file under the Solution folder named appsettings.json
+  4. Enter the following code:
+For MongoDB:
+{
+  "Settings": {
+    "MongoDB:ConnectionString": "<insert connection string>",
+    "MongoDB:DatabaseName": "<insert database name>"
+  }
+}
+
+For CSV:
+{
+  "Settings": {
+    "CSV:ConnectionString": "CSVFolderPath = <insert file path>",
+    "CSV:FileName": "<insert file name>"
+  }
+}
+
+NOTE: The value for the connection string is going to be unique to the database type. It may contain credentials, which is why we store it in appsetting.json, instead of in the database adapter.
+NOTE: If you do not need a database name, then delete that line and remove the comma from the previous line.
+
+  5. Close the appsettings.json file.
+NOTE: In order to access the file again, you will have to view it on your local machine. To do so, open the File Explorer application and navigate to the repository. The file cannot be viewed in visual studio under the project because of step 2.
+
+  6. In your database adapter file add the following code to the begining of your constructor:
+
+IConfigurationRoot config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .AddEnvironmentVariables()
+    .Build();
+
+  7. Set the connection string and database name variables immediately after (also in the constructor). Similar to this:
+
+var connectionString = config.GetSection("MongoDB:ConnectionString").Value;
+var databaseName = config.GetSection("MongoDB:DatabaseName").Value;
+
+NOTE: This could vary depending on database type.
