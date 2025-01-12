@@ -1,0 +1,99 @@
+﻿@page
+@model ASP.NET_UI.Pages.ViewModel
+@{
+    ViewData["Title"] = "View Page";
+}
+
+<h2>Database History</h2>
+
+<!-- Tabs for Switching Between Equipment and Components -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="equipment-tab" data-bs-toggle="tab" href="#equipment" role="tab" aria-controls="equipment" aria-selected="true">
+            Equipment
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="components-tab" data-bs-toggle="tab" href="#components" role="tab" aria-controls="components" aria-selected="false">
+            Components
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <!-- Equipment Tab -->
+    <div class="tab-pane fade show active" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
+        <h3>Equipment List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of Purchase</th>
+                    <th>Date Installed</th>
+                    <th>End of Life</th>
+                </tr>
+            </thead>
+            <tbody>
+                foreach (var equipment in view.OnGet())
+                {
+                    <tr>
+                        <td>equipment.EquipmentID</td>
+                        <td>equipment.EquipmentName</td>
+                        <td>equipment.PurchaseDate.ToShortDateString()</td>
+                        <td>equipment.InstallationDate.ToShortDateString()</td>
+                        <td>equipment.EOLDate.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Components Tab -->
+    <div class="tab-pane fade" id="components" role="tabpanel" aria-labelledby="components-tab">
+        <h3>Components List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Purchase Date</th>
+                    <th>End of Life</th>
+                </tr>
+            </thead>
+            <tbody>
+                foreach (var component in view.OnGett())
+                {
+                    <tr>
+                        <td> component.ComponentID</td>
+                        <td> component.ComponentName</td>
+                        <td> component.PurchaseDate.ToShortDateString()</td>
+                        <td> component.InstallationDate.ToShortDateString()</td>
+                        <td> component.EndOLDate.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>

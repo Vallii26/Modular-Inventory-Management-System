@@ -1,0 +1,108 @@
+﻿@page
+@model ASP.NET_UI.Pages.IndexModel
+@{
+    ViewData["Title"] = "Equipment Page";
+}
+
+<h1>Equipment</h1>
+
+<!-- Add CSS for Layout Spacing -->
+<style>
+    /* Add space between sections */
+    .section {
+        margin-bottom: 20px; /* Adds space below each section */
+    }
+
+    /* Add spacing around the form fields */
+    .form-field {
+        margin-bottom: 10px; /* Adds space between input fields */
+    }
+
+    /* Center buttons and add spacing */
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px; /* Adds space above the buttons and below the table */
+    }
+
+    /* Table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Collapses the table borders */
+    }
+
+        table th, table td {
+            padding: 10px; /* Adds space between the content and the cell border */
+            text-align: left; /* Aligns the text to the left */
+        }
+
+        table th {
+            background-color: #f2f2f2; /* Light background color for headers */
+        }
+
+    table, th, td {
+        border: 1px solid black; /* Adds borders to the table and cells */
+    }
+</style>
+
+<!-- Equipment Form -->
+<form method="post" class="section">
+
+    <div class="form-field">
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="ID" />
+    </div>
+    <div class="form-field">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name" />
+    </div>
+    <div class="form-field">
+        <label for="purchaseDate">Date of Purchase:</label>
+        <input type="date" id="purchaseDate" name="DOP" />
+    </div>
+    <div class="form-field">
+        <label for="installDate">Date Installed:</label>
+        <input type="date" id="installDate" name="InstallDate" />
+    </div>
+    <div class="form-field">
+        <label for="endOfLife">End of Life:</label>
+        <input type="date" id="endOfLife" name="EOL" />
+    </div>
+
+    <!-- Save Equipment Button -->
+    <div class="button-container">
+        <button type="submit" class="btn btn-primary">Save Equipment</button>
+    </div>
+
+</form>
+
+
+<!-- Components Section -->
+<h2>Components</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Purchase Date</th>
+            <th>End of Life</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--foreach (var component in Model.Components)
+                {
+                    <tr>
+                        <td>component.Id</td>
+                        <td>component.Type</td>
+                        <td>component.PurchaseDate.ToShortDateString()</td>
+                        <td>component.EndOfLife.ToShortDateString()</td>
+                    </tr>
+                }-->
+    </tbody>
+</table>
+
+<!-- Buttons for Navigation -->
+<div class="button-container">
+    <a asp-page="/View" class="btn btn-primary">View Database</a>
+    <a asp-page="/Component" class="btn btn-primary">Add Component</a>
+</div>
